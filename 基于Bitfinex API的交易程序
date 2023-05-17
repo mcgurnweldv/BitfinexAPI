@@ -1,0 +1,25 @@
+import bitfinex
+
+# 初始化API
+client = bitfinex.Client(api_key, api_secret)
+
+# 获取市场深度
+depth = client.order_book('tBTCUSD', 'P0', 10)
+
+# 获取账户余额
+balance = client.wallets()
+
+# 下单
+order = client.submit_order(
+    symbol='tBTCUSD',
+    amount=1,
+    price=50000,
+    side='buy',
+    type='exchange limit'
+)
+
+# 撤单
+client.cancel_order(order['id'])
+
+# 获取交易历史
+trades = client.trades('tBTCUSD')
